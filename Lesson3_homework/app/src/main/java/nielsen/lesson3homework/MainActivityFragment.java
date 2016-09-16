@@ -37,7 +37,7 @@ public class MainActivityFragment extends Fragment {
 
     public View.OnClickListener onItemClick = new View.OnClickListener() {
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
             Log.d("MainActivityFragment", "User clicked a text view");
             AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
             builder.setTitle(R.string.dialogTitle)
@@ -48,12 +48,16 @@ public class MainActivityFragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Log.d("MainActivityFragment", "User clicked OK");
+                            String textInput = editText.getText().toString();
+                            ((TextView) v).setText(textInput);
+
                         }
                     })
                     .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Log.d("MainActivityFragment", "User clicked CANCEL");
+                            dialog.cancel();
                         }
                     });
             builder.show();
