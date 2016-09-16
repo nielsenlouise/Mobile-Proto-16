@@ -5,6 +5,7 @@ package com.example;
  */
 public class Account {
 
+    // Right way to name setters and getters!
     public long getAmount() {
         return amount;
     }
