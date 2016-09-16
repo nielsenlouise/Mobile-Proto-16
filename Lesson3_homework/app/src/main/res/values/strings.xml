@@ -8,6 +8,10 @@
     <string name="dialogTitle">Add text title</string>
     <string name="addText">Add text here!</string>
     <string name="back">Back</string>
+    <string name="colors">Choose a color for the app background.</string>
+    <string name="red">red</string>
+    <string name="green">green</string>
+    <string name="blue">blue</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
