@@ -29,33 +29,38 @@ public class MainActivityFragment extends Fragment {
         TextView myTextView3 = (TextView) view.findViewById(R.id.textView3);
         TextView myTextView4 = (TextView) view.findViewById(R.id.textView4);
         TextView myTextView5 = (TextView) view.findViewById(R.id.textView5);
-
-
-        myTextView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                TODO: add a text entry place and everything else after that (custom things)
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                Log.d("MainActivityFragment", "onClickListener got hit");
-                EditText edit_text = new EditText(v.getContext());
-                builder.setMessage(R.string.dialogMessage)
-                        .setView(edit_text)
-                        .setTitle(R.string.dialogTitle)
-                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Log.d("MainActivityFragment", "User clicked OK");
-                            }
-                        })
-                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Log.d("MainActivityFragment", "User clicked Cancel");
-                            }
-                        });
-                builder.show();
-            }
-        });
-
+        myTextView1.setOnClickListener(onItemClick);
+        myTextView2.setOnClickListener(onItemClick);
+        myTextView3.setOnClickListener(onItemClick);
+        myTextView4.setOnClickListener(onItemClick);
+        myTextView5.setOnClickListener(onItemClick);
 
         return view;
     }
+
+    public View.OnClickListener onItemClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Log.d("MainActivityFragment", "User clicked a text view");
+            AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+            builder.setTitle(R.string.dialogTitle)
+                    .setMessage(R.string.dialogMessage);
+            final EditText editText = new EditText(v.getContext());
+            builder.setView(editText)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Log.d("MainActivityFragment", "User clicked OK");
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Log.d("MainActivityFragment", "User clicked CANCEL");
+                        }
+                    });
+            builder.show();
+
+        }
+    };
 }
