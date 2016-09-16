@@ -30,7 +30,9 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d("SettingsFragment", "User clicked red color button");
+                // gets the MainActivity layout as a thing I can change
                 View mainActivityView = getActivity().findViewById(R.id.mainLayout);
+                // sets the background color to red
                 mainActivityView.setBackgroundColor(Color.argb(255,255,0,0));
             }
         });
@@ -40,7 +42,9 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d("SettingsFragment", "User clicked green color button");
+                // gets the MainActivity layout as a thing I can change
                 View mainActivityView = getActivity().findViewById(R.id.mainLayout);
+                // sets the background color to green
                 mainActivityView.setBackgroundColor(Color.argb(255,0,255,0));
             }
         });
@@ -50,7 +54,9 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d("SettingsFragment", "User clicked blue color button");
+                // gets the MainActivity layout as a thing I can change
                 View mainActivityView = getActivity().findViewById(R.id.mainLayout);
+                // sets the background color to blue
                 mainActivityView.setBackgroundColor(Color.argb(255,0,0,255));
             }
         });
