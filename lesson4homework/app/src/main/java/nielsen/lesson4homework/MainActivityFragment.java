@@ -29,10 +29,12 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
+        // Nice! Always good practice to specify the type of ArrayList. Like you did here ArrayList<ToDo>
         ArrayList<ToDo> arrayOfToDos = new ArrayList<>();
         final ToDoListAdapter adapter = new ToDoListAdapter(getContext(), arrayOfToDos);
         ListView listView = (ListView) view.findViewById(R.id.lvToDos);
         listView.setAdapter(adapter);
+        // There are two add buttons. Remove the duplicate?
         FloatingActionButton myAddButton = (FloatingActionButton) view.findViewById(R.id.addButton);
         myAddButton.setOnClickListener(new View.OnClickListener() {
             @Override

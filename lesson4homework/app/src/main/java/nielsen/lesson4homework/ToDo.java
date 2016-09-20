@@ -4,7 +4,7 @@ package nielsen.lesson4homework;
  * Created by lnielsen on 9/19/16.
  */
 public class ToDo {
-
+    // Nice use of custom adapter. isCompleted is a good addition here
     private String textToDo;
     private boolean isCompleted;
 

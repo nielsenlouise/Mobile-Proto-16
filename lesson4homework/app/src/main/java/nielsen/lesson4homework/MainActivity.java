@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
         toDoArrayAdapter = new ToDoListAdapter(this, toDos);
 
         listView.setAdapter(toDoArrayAdapter);
-
+        // I think the reason the app is crashing is listView is null
+        // The fragment which holds these have not been created yet
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // You can also use TAG in log statements
                 Log.d("MainActivity", "User clicked SETTINGS button");
 
                 if (settingsButton.getText() == getString(R.string.settings)){
