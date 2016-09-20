@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Lesson 4 homework</string>
+    <string name="settings">Settings</string>
+    <string name="editpls">Add something to do!</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="dialogTitle">What do you need to do?</string>
+    <string name="addText">Add text here!</string>
+    <string name="back">Back</string>
+    <string name="colors">Choose a color for the app background.</string>
+    <string name="red">red</string>
+    <string name="green">green</string>
+    <string name="blue">blue</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
