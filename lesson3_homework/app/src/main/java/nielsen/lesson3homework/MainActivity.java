@@ -12,7 +12,8 @@ import android.widget.Button;
 import layout.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
-
+    // Initiate TAG here to tag your logs. The String the right side returns is just "MainActivity"
+    public static final String TAG = MainActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("MainActivity", "User clicked SETTINGS button");
+                // It is much better practice to use a final variable TAG here to tag your logs.
+                // It is initiated at the top, as a class attribute.
+                Log.d(TAG, "User clicked SETTINGS button");
 
                 if (settingsButton.getText() == getString(R.string.settings)){
                     getSupportFragmentManager().beginTransaction()
