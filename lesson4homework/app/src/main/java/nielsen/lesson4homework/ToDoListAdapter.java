@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -32,9 +33,20 @@ public class ToDoListAdapter extends ArrayAdapter<ToDo> {
         }
         // Lookup view for data population
         final TextView tvTextToDo = (TextView) convertView.findViewById(R.id.tvTextToDo);
+        final Button completeButton = (Button) convertView.findViewById(R.id.completeButton);
 
         tvTextToDo.setText(toDo.getTextToDo());
+        completeButton.setText(toDo.isCompleted() ? "Incomplete": "Complete");
         tvTextToDo.setText(toDo.isCompleted() ? String.format("%s (Completed)", toDo.getTextToDo()) : toDo.getTextToDo());
+
+        completeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toDo.setCompleted(!toDo.isCompleted());
+                tvTextToDo.setText(toDo.isCompleted() ? String.format("%s (Completed)", toDo.getTextToDo()) : toDo.getTextToDo());
+                completeButton.setText(toDo.isCompleted() ? "Incomplete": "Complete");
+            }
+        });
 
         tvTextToDo.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-//import layout.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         settingsButton = (Button) findViewById(R.id.settingsButton);
         editText = (EditText) findViewById(R.id.editText);
-        listView = (ListView) findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.lvToDos);
         addButton = (FloatingActionButton) findViewById(R.id.addButton);
         toDos = new ArrayList<>();
         toDoArrayAdapter = new ToDoListAdapter(this, toDos);
