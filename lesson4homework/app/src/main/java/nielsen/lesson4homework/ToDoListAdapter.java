@@ -19,12 +19,16 @@ import java.util.ArrayList;
  * Created by lnielsen on 9/19/16.
  */
 public class ToDoListAdapter extends ArrayAdapter<ToDo> {
+    public static final String TAG = ToDoListAdapter.class.getName();
+    public ArrayList<ToDo> toDos;
+
     public ToDoListAdapter(Context context, ArrayList<ToDo> toDos) {
         super(context, 0, toDos);
+        this.toDos = toDos;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
         final ToDo toDo = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
@@ -34,14 +38,39 @@ public class ToDoListAdapter extends ArrayAdapter<ToDo> {
         // Lookup view for data population
         final TextView tvTextToDo = (TextView) convertView.findViewById(R.id.tvTextToDo);
         final Button completeButton = (Button) convertView.findViewById(R.id.completeButton);
+        final Button removeButton = (Button) convertView.findViewById(R.id.removeButton);
 
         tvTextToDo.setText(toDo.getTextToDo());
         completeButton.setText(toDo.isCompleted() ? "Incomplete": "Complete");
         tvTextToDo.setText(toDo.isCompleted() ? String.format("%s (Completed)", toDo.getTextToDo()) : toDo.getTextToDo());
 
+        removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "User clicked remove button");
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Are you sure you want to remove this?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Log.d(TAG, "User clicked Yes");
+                                removeToDo(position);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                builder.show();
+            }
+        });
+
         completeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "User clicked complete button");
                 toDo.setCompleted(!toDo.isCompleted());
                 tvTextToDo.setText(toDo.isCompleted() ? String.format("%s (Completed)", toDo.getTextToDo()) : toDo.getTextToDo());
                 completeButton.setText(toDo.isCompleted() ? "Incomplete": "Complete");
@@ -51,7 +80,7 @@ public class ToDoListAdapter extends ArrayAdapter<ToDo> {
         tvTextToDo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("ToDoListAdapter", "User clicked a text view");
+                Log.d(TAG, "User clicked a text view");
                 // makes and alertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle(R.string.dialogTitle);
@@ -63,7 +92,7 @@ public class ToDoListAdapter extends ArrayAdapter<ToDo> {
                         .setPositiveButton(R.string.editpls, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Log.d("ToDoListAdapter", "User clicked OK");
+                                Log.d(TAG, "User clicked OK");
                                 // makes the input something I can use
                                 toDo.setTextToDo(editText.getText().toString());
                                 // sets the text view to have that user input
@@ -75,7 +104,7 @@ public class ToDoListAdapter extends ArrayAdapter<ToDo> {
                         .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Log.d("ToDoListAdapter", "User clicked CANCEL");
+                                Log.d(TAG, "User clicked CANCEL");
                                 // cancels everything and makes the dialog box go away
                                 dialog.cancel();
                             }
@@ -89,5 +118,10 @@ public class ToDoListAdapter extends ArrayAdapter<ToDo> {
         tvTextToDo.setText(toDo.getTextToDo());
         // Return the completed view to render on screen
         return convertView;
+    }
+
+    private void removeToDo(int position) {
+        toDos.remove(position);
+        notifyDataSetChanged();
     }
 }
