@@ -25,7 +25,7 @@ public class ToDo {
     }
 
 
-    public ToDo(String textToDo, boolean isCompleted) {
+    public ToDo(String textToDo) {
         this.textToDo = textToDo;
         this.isCompleted = false;
     }

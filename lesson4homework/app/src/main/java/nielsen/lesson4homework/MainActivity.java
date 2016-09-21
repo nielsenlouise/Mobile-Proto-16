@@ -6,8 +6,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,16 +13,9 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 
 public class MainActivity extends AppCompatActivity {
-    private EditText editText;
-    private FloatingActionButton addButton;
-    private ListView listView;
-    private ArrayList<ToDo> toDos;
-    public ArrayAdapter<ToDo> toDoArrayAdapter;
+
     private Button settingsButton;
 
 
@@ -34,23 +25,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         settingsButton = (Button) findViewById(R.id.settingsButton);
-        editText = (EditText) findViewById(R.id.editText);
-        listView = (ListView) findViewById(R.id.lvToDos);
-        addButton = (FloatingActionButton) findViewById(R.id.addButton);
-        toDos = new ArrayList<>();
-        toDoArrayAdapter = new ToDoListAdapter(this, toDos);
-
-        listView.setAdapter(toDoArrayAdapter);
-
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toDos.add(new ToDo(editText.getText().toString(), false));
-                editText.setText("@string/editpls");
-                toDoArrayAdapter.notifyDataSetChanged();
-            }
-        });
-
 
 
         final MainActivityFragment mainActivityFragment = new MainActivityFragment();

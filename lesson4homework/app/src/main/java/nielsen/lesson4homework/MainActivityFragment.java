@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -19,26 +20,38 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static nielsen.lesson4homework.R.id.addButton;
+import static nielsen.lesson4homework.R.id.editText;
+
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
+
+    private EditText editText;
+    private FloatingActionButton addButton;
+    private ListView listView;
+    private ArrayList<ToDo> toDos;
+    public ArrayAdapter<ToDo> toDoArrayAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        ArrayList<ToDo> arrayOfToDos = new ArrayList<>();
-        final ToDoListAdapter adapter = new ToDoListAdapter(getContext(), arrayOfToDos);
-        ListView listView = (ListView) view.findViewById(R.id.lvToDos);
-        listView.setAdapter(adapter);
-        FloatingActionButton myAddButton = (FloatingActionButton) view.findViewById(R.id.addButton);
-        myAddButton.setOnClickListener(new View.OnClickListener() {
+        editText = (EditText) view.findViewById(R.id.editText);
+        listView = (ListView) view.findViewById(R.id.lvToDos);
+        addButton = (FloatingActionButton) view.findViewById(R.id.addButton);
+        toDos = new ArrayList<>();
+        toDoArrayAdapter = new ToDoListAdapter(getContext(), toDos);
+
+        listView.setAdapter(toDoArrayAdapter);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToDo newToDo = new ToDo("Add something to do!", false);
-                adapter.add(newToDo);
+                ToDo newToDo = new ToDo("Add something to do!");
+                toDoArrayAdapter.add(newToDo);
             }
         });
 
