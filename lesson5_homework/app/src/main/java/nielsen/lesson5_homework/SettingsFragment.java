@@ -2,10 +2,12 @@ package nielsen.lesson5_homework;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +32,14 @@ public class SettingsFragment extends Fragment {
         Button colorbutton2 = (Button) view.findViewById(R.id.colorbutton2);
         Button colorbutton3 = (Button) view.findViewById(R.id.colorbutton3);
 
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        int defaultValue = ContextCompat.getColor(getContext(), R.color.saved_background_default);
+        int background = sharedPref.getInt(getString(R.string.saved_background), defaultValue);
+        Activity a = getActivity();
+        a.getWindow().getDecorView().setBackgroundColor(background);
+
+
+
 
 
         colorbutton1.setOnClickListener(new View.OnClickListener() {
@@ -39,7 +49,12 @@ public class SettingsFragment extends Fragment {
                 // gets the MainActivity layout as a thing I can change
                 Activity a = getActivity();
                 // sets the background color to red
-                a.getWindow().getDecorView().setBackgroundColor(Color.rgb(255,0,0));
+                int currentBackground = ContextCompat.getColor(getContext(), R.color.red);
+                a.getWindow().getDecorView().setBackgroundColor(currentBackground);
+                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt(getString(R.string.saved_background), currentBackground);
+                editor.apply();
             }
         });
 
@@ -50,7 +65,12 @@ public class SettingsFragment extends Fragment {
                 // gets the MainActivity layout as a thing I can change
                 Activity a = getActivity();
                 // sets the background color to green
-                a.getWindow().getDecorView().setBackgroundColor(Color.rgb(0,255,0));
+                int currentBackground = ContextCompat.getColor(getContext(), R.color.green);
+                a.getWindow().getDecorView().setBackgroundColor(currentBackground);
+                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt(getString(R.string.saved_background), currentBackground);
+                editor.apply();
             }
         });
 
@@ -61,7 +81,12 @@ public class SettingsFragment extends Fragment {
                 // gets the MainActivity layout as a thing I can change
                 Activity a = getActivity();
                 // sets the background color to blue
-                a.getWindow().getDecorView().setBackgroundColor(Color.rgb(0,0,255));
+                int currentBackground = ContextCompat.getColor(getContext(), R.color.blue);
+                a.getWindow().getDecorView().setBackgroundColor(currentBackground);
+                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt(getString(R.string.saved_background), currentBackground);
+                editor.apply();
             }
         });
 
