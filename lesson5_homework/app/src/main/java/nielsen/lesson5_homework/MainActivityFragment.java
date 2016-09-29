@@ -38,12 +38,14 @@ public class MainActivityFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         // instantiate a ToDoSQLHelper instance
+        final ToDoSQLHelper mDbHelper = new ToDoSQLHelper(view.getContext());
+        toDos = mDbHelper.readDatabase();
         // read it
 
         editText = (EditText) view.findViewById(R.id.editText);
         listView = (ListView) view.findViewById(R.id.lvToDos);
         addButton = (FloatingActionButton) view.findViewById(R.id.addButton);
-        toDos = new ArrayList<>();
+//        toDos = new ArrayList<>();
         toDoArrayAdapter = new ToDoListAdapter(getContext(), toDos);
 
         listView.setAdapter(toDoArrayAdapter);
@@ -53,7 +55,6 @@ public class MainActivityFragment extends Fragment {
             public void onClick(View v) {
                 ToDo newToDo = new ToDo("Add something to do!");
                 toDoArrayAdapter.add(newToDo);
-                ToDoSQLHelper mDbHelper = new ToDoSQLHelper(getContext());
                 mDbHelper.addToDo("Add something to do!", false);
             }
         });

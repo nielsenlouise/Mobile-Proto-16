@@ -2,8 +2,10 @@ package nielsen.lesson5_homework;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -12,6 +14,7 @@ import java.util.ArrayList;
  */
 
 public class ToDoSQLHelper extends SQLiteOpenHelper {
+    private static final String TAG = "ToDoSQLHelper";
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
     private static final String SQL_CREATE_ENTRIES =
@@ -55,8 +58,38 @@ public class ToDoSQLHelper extends SQLiteOpenHelper {
         long newRowId = db.insert(ToDoSchema.FeedEntry.TABLE_NAME, null, values);
     }
 
-    // change this return type to ArrayList
-    public void readDatabase() {}
+    public ArrayList<ToDo> readDatabase() {
+
+        ArrayList<ToDo> toDoArrayList = new ArrayList<ToDo>();
+
+
+        String POSTS_SELECT_QUERY =
+                "SELECT * FROM " + ToDoSchema.FeedEntry.TABLE_NAME;
+
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(POSTS_SELECT_QUERY, null);
+
+        try {
+            if (c.moveToFirst()) {
+                do {
+                    ToDo newToDo = new ToDo("");
+                    newToDo.setTextToDo(c.getString(c.getColumnIndex(ToDoSchema.FeedEntry.COLUMN_NAME_TEXT)));
+//                    newToDo.setCompleted(c.getString(c.getColumnIndex(ToDoSchema.FeedEntry.COLUMN_NAME_COMPLETE)));
+                    toDoArrayList.add(newToDo);
+                } while (c.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Error trying to get items from database");
+        } finally {
+            if (c != null && c.isClosed()) {
+                c.close();
+            }
+        }
+
+        return toDoArrayList;
+
+    }
 
     public void deleteToDo(String toDoText) {}
 
