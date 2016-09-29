@@ -93,10 +93,13 @@ public class ToDoListAdapter extends ArrayAdapter<ToDo> {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Log.d(TAG, "User clicked OK");
+                                ToDoSQLHelper mDbHelper = new ToDoSQLHelper(getContext());
+                                mDbHelper.updateToDo(toDos.get(position).getTextToDo(), toDo.getTextToDo(), false);
                                 // makes the input something I can use
                                 toDo.setTextToDo(editText.getText().toString());
                                 // sets the text view to have that user input
                                 tvTextToDo.setText(toDo.getTextToDo());
+
 
                             }
                         })
@@ -123,5 +126,7 @@ public class ToDoListAdapter extends ArrayAdapter<ToDo> {
     private void removeToDo(int position) {
         toDos.remove(position);
         notifyDataSetChanged();
+        ToDoSQLHelper mDbHelper = new ToDoSQLHelper(getContext());
+        mDbHelper.deleteToDo(toDos.get(position).getTextToDo());
     }
 }

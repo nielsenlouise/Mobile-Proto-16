@@ -91,8 +91,36 @@ public class ToDoSQLHelper extends SQLiteOpenHelper {
 
     }
 
-    public void deleteToDo(String toDoText) {}
+    public void deleteToDo(String toDoText) {
+        // this deletes every item and I'm not sure why...
 
-    public void updateToDo(String currentToDoText, String newToDoText, boolean changeComplete) {}
+        // Define 'where' part of query.
+        String selection = ToDoSchema.FeedEntry.COLUMN_NAME_TEXT + " LIKE ?";
+        // Specify arguments in placeholder order.
+        String[] selectionArgs = { toDoText };
+        // Issue SQL statement.
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(ToDoSchema.FeedEntry.TABLE_NAME, selection, selectionArgs);
+
+    }
+
+    public void updateToDo(String currentToDoText, String newToDoText, boolean changeComplete) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // New value for one column
+        ContentValues values = new ContentValues();
+        values.put(ToDoSchema.FeedEntry.COLUMN_NAME_TEXT, currentToDoText);
+
+        // Which row to update, based on the title
+        String selection = ToDoSchema.FeedEntry.COLUMN_NAME_TEXT + " LIKE ?";
+        String[] selectionArgs = { "MyTitle" };
+
+        int count = db.update(
+                ToDoSchema.FeedEntry.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+    }
 }
 
