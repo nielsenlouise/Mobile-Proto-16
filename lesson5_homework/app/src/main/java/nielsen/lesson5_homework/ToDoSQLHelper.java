@@ -74,6 +74,7 @@ public class ToDoSQLHelper extends SQLiteOpenHelper {
             if (c.moveToFirst()) {
                 do {
                     ToDo newToDo = new ToDo("");
+                    // If you have a setTextToDo, why give the constructor an empty string?
                     newToDo.setTextToDo(c.getString(c.getColumnIndex(ToDoSchema.FeedEntry.COLUMN_NAME_TEXT)));
 //                    newToDo.setCompleted(c.getString(c.getColumnIndex(ToDoSchema.FeedEntry.COLUMN_NAME_COMPLETE)));
                     toDoArrayList.add(newToDo);
@@ -93,7 +94,7 @@ public class ToDoSQLHelper extends SQLiteOpenHelper {
 
     public void deleteToDo(String toDoText) {
         // this deletes every item and I'm not sure why...
-
+        // What text are you searching for? If there are more than one todo item that has toDoText, it will delete all of them
         // Define 'where' part of query.
         String selection = ToDoSchema.FeedEntry.COLUMN_NAME_TEXT + " LIKE ?";
         // Specify arguments in placeholder order.
@@ -111,10 +112,12 @@ public class ToDoSQLHelper extends SQLiteOpenHelper {
         // New value for one column
         ContentValues values = new ContentValues();
         values.put(ToDoSchema.FeedEntry.COLUMN_NAME_TEXT, currentToDoText);
+        //Why are you putting the same current todo item? The new todo is unused
 
         // Which row to update, based on the title
         String selection = ToDoSchema.FeedEntry.COLUMN_NAME_TEXT + " LIKE ?";
         String[] selectionArgs = { "MyTitle" };
+        // It only searches for MyTitle?
 
         int count = db.update(
                 ToDoSchema.FeedEntry.TABLE_NAME,

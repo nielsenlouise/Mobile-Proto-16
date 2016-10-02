@@ -1,5 +1,6 @@
 package nielsen.lesson5_homework;
 
+// Remove all the unused imports
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+// Unused stuff. These should be removed while cleaning up the code
 import static nielsen.lesson5_homework.R.id.addButton;
 import static nielsen.lesson5_homework.R.id.editText;
 
@@ -26,6 +28,7 @@ import static nielsen.lesson5_homework.R.id.editText;
  */
 public class MainActivityFragment extends Fragment {
 
+    // Nice! All the variables that can be private are made private
     private EditText editText;
     private FloatingActionButton addButton;
     private ListView listView;
@@ -45,7 +48,7 @@ public class MainActivityFragment extends Fragment {
         editText = (EditText) view.findViewById(R.id.editText);
         listView = (ListView) view.findViewById(R.id.lvToDos);
         addButton = (FloatingActionButton) view.findViewById(R.id.addButton);
-//        toDos = new ArrayList<>();
+//        toDos = new ArrayList<>(); // Remove unnecessary lines of code
         toDoArrayAdapter = new ToDoListAdapter(getContext(), toDos);
 
         listView.setAdapter(toDoArrayAdapter);
@@ -55,6 +58,8 @@ public class MainActivityFragment extends Fragment {
             public void onClick(View v) {
                 ToDo newToDo = new ToDo("Add something to do!");
                 toDoArrayAdapter.add(newToDo);
+                // Is this a placeholder for the Todo item?
+                // Nicer design would be to offer users a popup and ask them to enter a todo name
                 mDbHelper.addToDo("Add something to do!", false);
             }
         });

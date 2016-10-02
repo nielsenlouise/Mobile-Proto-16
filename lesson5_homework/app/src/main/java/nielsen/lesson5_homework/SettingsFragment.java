@@ -37,9 +37,9 @@ public class SettingsFragment extends Fragment {
         int background = sharedPref.getInt(getString(R.string.saved_background), defaultValue);
         Activity a = getActivity();
         a.getWindow().getDecorView().setBackgroundColor(background);
+        // SharedPref looks really nice
 
-
-
+        // This whitespace is not needed. Get rid of it?
 
 
         colorbutton1.setOnClickListener(new View.OnClickListener() {
@@ -49,9 +49,11 @@ public class SettingsFragment extends Fragment {
                 // gets the MainActivity layout as a thing I can change
                 Activity a = getActivity();
                 // sets the background color to red
+                // You repeat the next few lines of code three times. Putting it in a method will make the code more readable
                 int currentBackground = ContextCompat.getColor(getContext(), R.color.red);
                 a.getWindow().getDecorView().setBackgroundColor(currentBackground);
                 SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                // Would like more
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putInt(getString(R.string.saved_background), currentBackground);
                 editor.apply();
