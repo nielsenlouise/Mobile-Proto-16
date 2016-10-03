@@ -1,6 +1,7 @@
 package mobile_proto_16.com.myapplication;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -23,6 +24,7 @@ import butterknife.ButterKnife;
 
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.Console;
 
@@ -40,9 +42,15 @@ public class MainActivityFragment extends Fragment {
     private Response.Listener<String> responseListener = new Response.Listener<String>() {
         @Override
         public void onResponse(String response) {
-            // YOUR CODE HERE. DO SOMETHING WHEN A RESPONSE COMES IN.
-            // Hint: remove the first three characters, parse the response into a JSONArray,
-            // and pass it into your extractPriceFromJSON() function.
+            String subResponse = response.substring(3);
+            try {
+                // thanks matt ruehle
+                JSONArray j = new JSONArray(subResponse);
+                String s = extractPriceFromJSON(j);
+                price.setText(s);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     };
 
@@ -69,10 +77,10 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String url = buildSearchURL(input.getText().toString());
-                // YOUR CODE HERE.
-                //
-                // Create a StringRequest using the URL and the listeners declared above.
-                // Add the request to your RequestQueue from your MySingleton class
+                // Request a string response from the provided URL.
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url, responseListener, errorListener);
+                // Add request to RequestQueue
+                MySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
             }
         });
 
@@ -80,14 +88,22 @@ public class MainActivityFragment extends Fragment {
     }
 
     private String buildSearchURL(String companyTicker) {
-        // YOUR CODE HERE
-        // USE URIBuilder
-        return "";
+        // thanks stack overflow
+        // also thanks david (probably) for giving us the link to that stack overflow
+        // http://stackoverflow.com/questions/19167954/use-uri-builder-in-android-or-create-url-with-variables
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("https")
+                .authority("finance.google.com")
+                .appendPath("finance")
+                .appendPath("info")
+                .appendQueryParameter("client", "iq")
+                .appendQueryParameter("q", companyTicker);
+        return builder.build().toString();
     }
 
     private String extractPriceFromJSON(JSONArray array) throws JSONException {
-        // Your code here. Extract the price value from the JSON array
-        return "";
+        // Extract the price value from the JSON array
+        return array.getJSONObject(0).getString("l_cur") + "";
     }
 
 }
