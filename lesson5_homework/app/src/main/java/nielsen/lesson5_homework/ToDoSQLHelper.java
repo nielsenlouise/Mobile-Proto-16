@@ -75,6 +75,7 @@ public class ToDoSQLHelper extends SQLiteOpenHelper {
                 do {
                     ToDo newToDo = new ToDo("");
                     newToDo.setTextToDo(c.getString(c.getColumnIndex(ToDoSchema.FeedEntry.COLUMN_NAME_TEXT)));
+                    newToDo.setId(c.getLong(c.getColumnIndex(ToDoSchema.FeedEntry._ID));
 //                    newToDo.setCompleted(c.getString(c.getColumnIndex(ToDoSchema.FeedEntry.COLUMN_NAME_COMPLETE)));
                     toDoArrayList.add(newToDo);
                 } while (c.moveToNext());

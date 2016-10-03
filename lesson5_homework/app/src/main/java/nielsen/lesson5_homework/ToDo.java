@@ -7,6 +7,7 @@ public class ToDo {
 
     private String textToDo;
     private boolean isCompleted;
+    private long id;
 
     public boolean isCompleted() {
         return isCompleted;
@@ -24,9 +25,18 @@ public class ToDo {
         this.textToDo = textToDo;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
-    public ToDo(String textToDo) {
+    public long getId() {
+        return id;
+    }
+
+
+    public ToDo(String textToDo, long id) {
         this.textToDo = textToDo;
         this.isCompleted = false;
+        this.id = id;
     }
 }
