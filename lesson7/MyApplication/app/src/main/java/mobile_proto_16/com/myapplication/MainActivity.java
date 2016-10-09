@@ -1,5 +1,7 @@
 package mobile_proto_16.com.myapplication;
 
+// Unused import statements. I noticed that it was in the starter code given to you.
+// It would be nice to clean it up.
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;

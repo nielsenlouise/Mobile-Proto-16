@@ -44,10 +44,19 @@ public class MainActivityFragment extends Fragment {
         public void onResponse(String response) {
             String subResponse = response.substring(3);
             try {
-                // thanks matt ruehle
+                // thanks matt ruehle  // Thanks for mentioning contributions
                 JSONArray j = new JSONArray(subResponse);
+                // Naming j and s something more descriptive would help your fellow coders identify
+                // what each of those are and what gets passed to the method extractPriceFromJSON
                 String s = extractPriceFromJSON(j);
                 price.setText(s);
+                // Think about the cases where you dont successfully get a response.
+                // Maybe add toasts to your app. https://developer.android.com/guide/topics/ui/notifiers/toasts.html
+
+                // On my phone the keyboard hides the TextView price. I didn't know I got a response
+                // until I minimized the keyboard. Consider automatically minimizing the keyboard once
+                // the user taps on Price button or moving the TextView into the top half of the screen
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -80,7 +89,7 @@ public class MainActivityFragment extends Fragment {
                 // Request a string response from the provided URL.
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url, responseListener, errorListener);
                 // Add request to RequestQueue
-                MySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
+                MySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest); // Nice!
             }
         });
 
@@ -91,6 +100,9 @@ public class MainActivityFragment extends Fragment {
         // thanks stack overflow
         // also thanks david (probably) for giving us the link to that stack overflow
         // http://stackoverflow.com/questions/19167954/use-uri-builder-in-android-or-create-url-with-variables
+
+        // Avoid using hardcoded strings. Use strings.xml. In real world, when your app gets translated,
+        // the translator's as well as developer's job becomes easy because all the strings are inside one file.
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
                 .authority("finance.google.com")
