@@ -10,8 +10,103 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="nielsen.lesson6_homework.MainActivity">
 
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false">
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="News Feed" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Friend Requests" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notifications" />
+    </android.support.design.widget.TabLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/post"
+        android:layout_below="@+id/tabLayout">
+
     <TextView
+        android:text="@string/shruti"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/posterName" />
+
+    <TextView
+        android:text="@string/shruti_post"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="18dp"
+        android:paddingLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/postContent" />
+
+    <Button
+        android:text="like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/button"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
+        android:layout_alignParentEnd="true"/>
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/post1"
+        android:layout_below="@+id/post">
+
+        <TextView
+            android:text="@string/david"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/posterName1" />
+
+        <TextView
+            android:text="@string/david_post"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="18dp"
+            android:paddingLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/postContent1" />
+
+        <Button
+            android:text="like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button1"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_alignParentEnd="true"/>
+    </LinearLayout>
 </RelativeLayout>

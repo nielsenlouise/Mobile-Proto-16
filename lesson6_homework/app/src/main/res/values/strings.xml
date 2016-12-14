@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">lesson6_homework</string>
+    <string name="app_name">Facebook</string>
+    <string name="shruti">Shruti says...</string>
+    <string name="david">David says...</string>
+    <string name="shruti_post">some thing valuable, probably, given Shruti. Mostly I\'m trying to take up space because I\'d have to upgrade to upload images, which is frustrating, but I\'d like to limit the number of posts.</string>
+    <string name="david_post">probably something about Butterknife or getting swole, I don\'t know. I don\'t think I\'m friends with any of y\'all on Actual Facebook anyway</string>
 </resources>
