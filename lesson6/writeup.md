@@ -6,4 +6,4 @@ In order to perform an action, how many times did you tap? Too many popups askin
   Facebook doesn't really have actions or purpose. Finding the posts for a specific group is difficult (swipe all the way right, scroll down a bit, then click). This is exacerbated by the existence of five screens to swipe between, which is just kind of terrible for me because I only use one of them and it's particularly far away.
 
 ### Some Paper Prototyping of a Different Layout
-![Facebook UI](/images/facebook_ui.png)
+![Facebook UI](/images/facebook_ui_visible.png)
