@@ -21,6 +21,6 @@ I'm proud of Guilt Motivator. It's ridiculous and it would be very unhealthy for
 The labs, especially the first one. I feel like doing those well would not have necessarily resulted in me knowing more about making Android apps, but I would have been a better teammate, potentially able to contribute better to the final project, and definitely would have felt less bad.
 
 ##### What is one or more things the teaching team could have done better through Mobile Proto?
-Those homework assignments in the first half, as a person who did not know Java at all, were brutal. Maybe scoping that a little more achievable would have been friendlier. Doing that next time would be wonderful.
+Those homework assignments in the first half, as a person who did not know Java at all, were brutal. Maybe scoping that a little more achievable would have been friendlier. Doing that next time would be wonderful. Also daily standups--those felt weird because my team never had one person who knew everything that had happened since last class, and honestly most of the work in a sprint is done during class or in the three days before the sprint review.
 
 (I feel like the last two questions were covered in the other answers.)
