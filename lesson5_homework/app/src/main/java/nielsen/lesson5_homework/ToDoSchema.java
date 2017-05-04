@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 /**
  * Created by lnielsen on 9/26/16.
  */
-
+// More comments on what this class does
 public final class ToDoSchema {
     private ToDoSchema() {}
 
