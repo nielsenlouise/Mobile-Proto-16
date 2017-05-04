@@ -26,6 +26,7 @@ public class Fraction {
     }
 
     public static int gcd(int m, int n) {
+        // Nice! Using min and max. Also logic is simplified (which is what we want)
         int lesser = Math.min(m, n);
         int greater = Math.max(m,n);
 
@@ -35,6 +36,8 @@ public class Fraction {
     }
 
     public void simplify() {
+        // Avoid naming variables something like gcdd (with an intentional typo). 
+        // If you want to use a keywork like gcd, you could say mGcd or some variation 
         int gcdd = gcd(numerator, denominator);
         if (gcdd != 0) {
             numerator = numerator / gcdd;

@@ -62,6 +62,7 @@ public abstract class Animal {
     public abstract void grow();
 }
 
+// Usually clean up code and removing stuff that is not being used.
 
 //public abstract class Vehicle {
 //
