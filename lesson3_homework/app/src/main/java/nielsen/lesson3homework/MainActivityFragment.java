@@ -16,6 +16,7 @@ import android.widget.TextView;
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
+    public static final String TAG = MainActivityFragment.class.getName();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,6 +28,8 @@ public class MainActivityFragment extends Fragment {
         TextView myTextView3 = (TextView) view.findViewById(R.id.textView3);
         TextView myTextView4 = (TextView) view.findViewById(R.id.textView4);
         TextView myTextView5 = (TextView) view.findViewById(R.id.textView5);
+
+        // +1 for refactoring!
         // sets onClickListeners for all my text views
         myTextView1.setOnClickListener(onItemClick);
         myTextView2.setOnClickListener(onItemClick);
@@ -51,7 +54,8 @@ public class MainActivityFragment extends Fragment {
                     .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Log.d("MainActivityFragment", "User clicked OK");
+                            // Similar to other comment about using a static final TAG variable.
+                            Log.d(TAG, "User clicked OK");
                             // makes the input something I can use
                             String textInput = editText.getText().toString();
                             // sets the text view to have that user input
